@@ -174,14 +174,28 @@ fi
 
 mkdir /root/db
 cd /root/db
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/config.bson
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/config.metadata.json
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/presets.bson
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/presets.metadata.json
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/provisions.bson
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/provisions.metadata.json
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/virtualParameters.bson
-wget https://github.com/beryindo/genieacs/raw/refs/heads/main/virtualParameters.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/cache.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/cache.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/config.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/config.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/devices.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/devices.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/faults.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/faults.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/locks.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/locks.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/permissions.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/permissions.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/presets.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/presets.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/provisions.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/provisions.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/tasks.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/tasks.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/users.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/users.metadata.json
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/virtualParameters.bson
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/virtualParameters.metadata.json
 mongorestore --db genieacs --drop /root/db
 systemctl start genieacs-{cwmp,ui,nbi}
 
