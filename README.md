@@ -12,7 +12,7 @@ uname -r
 cek pastikan TIDAK ada mengandung kata cloud
 
 ```
-wget https://raw.githubusercontent.com/beryindo/genieacs/refs/heads/main/vpnsetup.sh
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/vpnsetup.sh
 chmod +x vpnsetup.sh
 ./vpnsetup.sh
 ```
@@ -45,7 +45,7 @@ ip route add 10.0.0.0/24 dev ppp0
 apt update
 apt upgrade
 apt install curl
-wget https://raw.githubusercontent.com/beryindo/genieacs/refs/heads/main/genie.sh
+wget https://github.com/oriza23/GenieACS-BeryIndo-/raw/refs/heads/main/genie.sh
 chmod +x genie.sh
 ./genie.sh
 ```
