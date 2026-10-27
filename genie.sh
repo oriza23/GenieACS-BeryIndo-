@@ -4,7 +4,7 @@ NC='\033[0m'
 local_ip=$(hostname -I | awk '{print $1}')
 echo -e "${GREEN}============================================================================${NC}"
 echo -e "${GREEN}==================== Script Install GenieACS All In One. ===================${NC}"
-echo -e "${GREEN}======================== NodeJS, MongoDB, GenieACS, ========================${NC}"
+echo -e "${GREEN}======================== NodeJS 22x, MongoDB 4x, GenieACS, ========================${NC}"
 echo -e "${GREEN}============================================================================${NC}"
 echo -e "${GREEN}Sebelum melanjutkan, silahkan baca terlebih dahulu. Apakah anda ingin melanjutkan? (y/n)${NC}"
 read confirmation
@@ -34,9 +34,9 @@ check_node_version() {
     fi
 }
 
-if ! check_node_version; then
-    echo -e "${GREEN}================== Menginstall NodeJS ==================${NC}"
-    curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+if ! check__version; then
+    echo -e "${GREEN}================== Menginstall JS ==================${NC}"
+    curl -sL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
     chmod +x nodesource_setup.sh
     ./nodesource_setup.sh
     apt install nodejs -y
@@ -52,6 +52,8 @@ fi
 #MongoDB
 if !  systemctl is-active --quiet mongod; then
     echo -e "${GREEN}================== Menginstall MongoDB ==================${NC}"
+	wget https://ftp.debian.org/debian/pool/main/o/openssl/libssl1.1_1.1.1w-0+deb11u1_amd64.deb
+	sudo dpkg -i libssl1.1_1.1.1w-0+deb11u1_amd64.deb
     curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
     apt-key list
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
@@ -169,6 +171,19 @@ else
     echo -e "${GREEN}============================================================================${NC}"
     echo -e "${GREEN}=================== GenieACS sudah terinstall sebelumnya. ==================${NC}"
 fi
+
+mkdir /root/db
+cd /root/db
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/config.bson
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/config.metadata.json
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/presets.bson
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/presets.metadata.json
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/provisions.bson
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/provisions.metadata.json
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/virtualParameters.bson
+wget https://github.com/beryindo/genieacs/raw/refs/heads/main/virtualParameters.metadata.json
+mongorestore --db genieacs --drop /root/db
+systemctl start genieacs-{cwmp,ui,nbi}
 
 #Sukses
 echo -e "${GREEN}============================================================================${NC}"
